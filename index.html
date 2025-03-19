@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>Homework #5: Custom Visualization Design - CSE 578 - Spring 2024</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+        <script src="https://unpkg.com/d3-force-boundary@0.0.1/dist/d3-force-boundary.min.js"></script>
+
+        <style>
+
+            #treemap_plot{
+                float:left;
+                padding:10px;
+                margin-left: auto;
+                margin-left: auto;
+            }
+
+
+
+            .tooltip {
+                position: absolute;
+                text-align: center;
+                padding: 10px;
+                font: 12px sans-serif;
+                background: #fff;
+                border: 1.5px solid #000;
+                border-radius: 5px;
+                pointer-events: none;
+            }
+
+            .switch {
+                top: 25px;
+                left: -80px;
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+            
+            /* Hide default HTML checkbox */
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            /* The slider */
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+            
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+            
+            input:checked + .slider {
+                background-color: #2196F3;
+            }
+            
+            input:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+            
+            input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="myContainer">
+            <h1 class="text-center">Homework #5: Custom Visualization Design</h1>
+            <h3 class="text-center">Uttam Kumar - ukumar17@asu.edu</h3>
+            <hr>
+
+            <h3 class="text-center">Custom Visualization : National Park and their Bio Diversities</h3>
+
+            <div id="treemap_plot" class=" justify-content-center border border-dark rounded bg-light shadow-sm">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <svg id="treemap_svg"></svg>
+                        </div>
+                        <div class="col-lg-1">
+                            <svg id="legend_svg"></svg>
+                         </div>
+                    </div>
+                </div>
+
+                <div id="tooltip"></div>
+            </div>
+            
+            <h4 class="text-center">Description</h4>
+            <pre class="text-center"> 
+I have created a Treemap with nested Circular Packing, this is a <b>Combinational Visualization</b>.
+
+The Treemap visualizes all the National Park and the size the rectangle marks the total number of species, 
+The National Parks are further grouped into States.
+
+The Circular Packing shows the different categories of species present for each national park.
+
+
+                </pre>
+                
+                <h4 class="text-center">Marks and Channels of the Visualization</h4>
+                <pre class="text-center">
+
+<b>Marks : Area - </b>Treemap: (Containment Mark) Heirarchial relationship between states and national park.
+<b>Point -</b> Circular Packing: Number of Categories.
+
+<b>Channels : Area - </b>Treemap: Total Number of species present in each national park.
+Circular Packing: Total Number of species present for each category.
+
+<b>Color - </b> Treemap: The State a National Park belongs to.
+Circular Packing: Different Species.
+
+                    
+Three attributes visualized : State of National Park, Unique Categories, Count of each Category.
+(Incase this is insufficient for the requirement, click the toggle below to visualize Acers of each national park in Treemap, that adds one more attribute but the visualization comes out bad)
+                </pre>
+
+                 <div class="text-center">
+                    <label>Visualize Acers in Treemap:</label>
+
+                    <label class="switch">
+                        <input type="checkbox" id = 'acers'>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+        </div>
+
+      <script src="./JS/ukumar17.js"></script>
+    </body>
+</html> 
